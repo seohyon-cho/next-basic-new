@@ -5,25 +5,26 @@ import { useState, useEffect } from 'react';
 import clsx from 'clsx';
 
 export default function Post() {
-  const [Post, setPost] = useState([]);
+	const [Post, setPost] = useState([]);
 
-  useEffect(() => {
-    fetch('/api/requestPost')
-      .then((data) => data.json())
-      .then((json) => setPost(json.result));
-  }, []);
+	useEffect(() => {
+		fetch('/api/requestPost')
+			.then((data) => data.json())
+			.then((json) => setPost(json.result));
+	}, []);
 
-  return (
-    <div className={clsx(styles.post)}>
-      {Post.map((post) => {
-        return (
-          <article key={post.name}>
-            <h2>
-              <Link href={`/post/${post.id}`}>{post.name}</Link>
-            </h2>
-          </article>
-        );
-      })}
-    </div>
-  );
+	return (
+		<div className={clsx(styles.post)}>
+			<h1>Post List</h1>
+			{Post.map((post) => {
+				return (
+					<article key={post.id}>
+						<h2>
+							<Link href={`/post/${post.id}`}>{post.title}</Link>
+						</h2>
+					</article>
+				);
+			})}
+		</div>
+	);
 }
