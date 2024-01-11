@@ -2,10 +2,12 @@
 import { useState } from 'react';
 import styles from './write.module.scss';
 import clsx from 'clsx';
+import { useRouter } from 'next/navigation';
 
 export default function Write() {
+	const router = useRouter();
 	const [Post, setPost] = useState({ title: '', content: '' });
-	console.log(Post);
+
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 		setPost({ ...Post, [name]: value });
@@ -21,6 +23,7 @@ export default function Write() {
 				response.json().then((data) => {
 					console.log(data);
 					alert('글 저장에 성공했습니다.');
+					router.push('/post');
 				});
 			} else {
 				console.log(response);
