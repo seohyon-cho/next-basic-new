@@ -10,14 +10,26 @@ export default function Write() {
 		const { name, value } = e.target;
 		setPost({ ...Post, [name]: value });
 	};
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		const response = await fetch('/api/requestPost', { method: 'POST', headers: { 'Content-type': 'application/json' }, body: JSON.stringify(Post) });
+
+		if (response.ok) {
+			alert('게시글 저장에 성공했습니다.');
+		} else {
+			alert('게시글 저장에 실패했습니다.');
+		}
+	};
 
 	return (
 		<section className={clsx(styles.write)}>
 			<h1>Write Post</h1>
 
-			<form>
+			<form onSubmit={handleSubmit}>
 				<input type='text' placeholder='title' name='title' value={Post.title} onChange={handleChange} />
 				<textarea name='content' cols='30' rows='3' value={Post.content} onChange={handleChange}></textarea>
+
+				<button>Send Post</button>
 			</form>
 		</section>
 	);
