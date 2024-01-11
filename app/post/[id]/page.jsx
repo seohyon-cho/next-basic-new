@@ -9,6 +9,7 @@ export default function PostDetail({ params }) {
 	const { id } = params;
 	const [PostEl, setPostEl] = useState(null);
 
+	//순서 (1) - 삭제할 글의 순번(id)을 인수로 받아서, DELETE method 방식으로 서버 쪽에 요청을 보내는 함수 정의
 	const handleDelete = (id) => {
 		if (!window.confirm('정말 글을 삭제하겠습니까?')) return;
 
@@ -43,6 +44,7 @@ export default function PostDetail({ params }) {
 			</article>
 			<nav>
 				<button>edit</button>
+				{/* 순서 (2) - 삭제 버튼 클릭 시, params 로 전달받은 글 고유번호를 handleDelete에 인수로 전달해서 호출 */}
 				<button onClick={() => handleDelete(id)}>delete</button>
 			</nav>
 		</section>

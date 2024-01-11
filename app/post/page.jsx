@@ -7,6 +7,7 @@ import clsx from 'clsx';
 export default function Post() {
 	const [Post, setPost] = useState([]);
 
+	// 순서 (4) - 목록 페이지에서 삭제된 게시글까지 갱신된 정보값으로 목록 데이터 재출력.
 	useEffect(() => {
 		fetch('/api/requestPost')
 			.then((data) => data.json())
