@@ -22,6 +22,10 @@ export default function PostDetail({ params }) {
 				<h2>{PostEl?.title}</h2>
 				<p>{PostEl?.content}</p>
 			</article>
+			<nav>
+				<button>edit</button>
+				<button>delete</button>
+			</nav>
 		</section>
 	);
 }

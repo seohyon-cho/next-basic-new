@@ -16,6 +16,11 @@ export default function Post() {
 	return (
 		<div className={clsx(styles.post)}>
 			<h1>Post List</h1>
+			<nav>
+				<button>
+					<Link href='/post/write'>Write Post</Link>
+				</button>
+			</nav>
 			{Post.map((post) => {
 				return (
 					<article key={post.id}>
