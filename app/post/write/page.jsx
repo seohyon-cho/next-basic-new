@@ -10,15 +10,23 @@ export default function Write() {
 		const { name, value } = e.target;
 		setPost({ ...Post, [name]: value });
 	};
-	const handleSubmit = async (e) => {
+	const handleSubmit = (e) => {
 		e.preventDefault();
-		const response = await fetch('/api/requestPost', { method: 'POST', headers: { 'Content-type': 'application/json' }, body: JSON.stringify(Post) });
-
-		if (response.ok) {
-			alert('게시글 저장에 성공했습니다.');
-		} else {
-			alert('게시글 저장에 실패했습니다.');
-		}
+		fetch('/api/requestPost', {
+			method: 'POST',
+			headers: { 'Content-type': 'application/json' },
+			body: JSON.stringify(Post),
+		}).then((response) => {
+			if (response.ok) {
+				response.json().then((data) => {
+					console.log(data);
+					alert('글 저장에 성공했습니다.');
+				});
+			} else {
+				console.log(response);
+				alert('글 저장에 실패했습니다.');
+			}
+		});
 	};
 
 	return (
